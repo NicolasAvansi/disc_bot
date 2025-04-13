@@ -125,7 +125,31 @@ async def iniciativa(ctx, *, entrada):
 
     await ctx.send(resposta)
 
+@bot.command()
+async def roll(ctx, *, arg):
+    # Regex para algo tipo: "3d20 +5", "2d6-1", "4d8", etc.
+    match = re.match(r"(\d+)d(\d+)(\s*([+-])\s*(\d+))?", arg.replace(" ", ""))
+    if not match:
+        await ctx.send("Formato inválido! Use: `!roll xdY +Z` (ex: `!roll 3d20 +5`)")
+        return
 
+    num_dice = int(match.group(1))
+    dice_size = int(match.group(2))
+    modifier_sign = match.group(4)
+    modifier_value = int(match.group(5)) if match.group(5) else 0
+    modifier = modifier_value if modifier_sign == '+' else -modifier_value
+
+    rolls = [random.randint(1, dice_size) for _ in range(num_dice)]
+    highest = max(rolls)
+    total = highest + modifier
+
+    response = (
+        f"🎲 Rolagens: {rolls}\n"
+        f"🔝 Maior dado: {highest}\n"
+        f"➕ Modificador: {'+' if modifier >= 0 else ''}{modifier}\n"
+        f"✅ Resultado final: {total}"
+    )
+    await ctx.send(response)
 
 
 @bot.event
