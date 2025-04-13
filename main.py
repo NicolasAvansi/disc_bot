@@ -7,7 +7,6 @@ import re
 import os
 from server import run_server
 import threading
-import languagemodels as lm
 
 my_secret = os.environ['DISCORD_KEY']
 intents = discord.Intents.default()
