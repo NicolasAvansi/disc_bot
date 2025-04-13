@@ -17,7 +17,7 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 youtube_dl.utils.bug_reports_message = lambda: ''
 
 ytdl_format_options = {
-    'proxy': 'http://43.130.58.145:13001'
+    'proxy': 'http://43.130.58.145:13001',
     'format': 'bestaudio/best',
     'outtmpl': 'downloads/%(title)s.%(ext)s',
     'noplaylist': True,
