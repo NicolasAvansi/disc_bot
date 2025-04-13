@@ -130,7 +130,7 @@ async def roll(ctx, *, arg):
     # Regex para algo tipo: "3d20 +5", "2d6-1", "4d8", etc.
     match = re.match(r"(\d+)d(\d+)(\s*([+-])\s*(\d+))?", arg.replace(" ", ""))
     if not match:
-        await ctx.send("Formato inválido! Use: `!roll xdY +Z` (ex: `!roll 3d20 +5`)")
+        await ctx.send("Formato inválido! Use: `!roll XdY +Z` (ex: `!roll 3d20 +5`)")
         return
 
     num_dice = int(match.group(1))
